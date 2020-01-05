@@ -2,24 +2,158 @@
 "_default": {},
 "alkoholfrei": {
     "1":{
-            "id": 1,
-            "name":"Virgin Caipirinha Tonic",
-            "image_path":"Grafiken/Alkoholfrei/virgin_caipirinha_tonic.png",
-            "rating":2,
-            "beschreibung":"BlaBlaBla",
-            "tags":"",
-            "ingredients":{
-                "limette_saft":1,
-                "tonic_water":5,
-                "rohrucker": "1/2 EL",
-                "zerstampfte_limette":"1 Stk",
-                "garnitur":[
-                "eiswuerfel"
-                ]
-            },
-            "zubereitung":"Limette achteln und zusammen mit dem Zucker im Glas zerstoßen. Das Glas mit Crushed Ice füllen und Tonic Water hinzugeben. Leicht umrühren."
+        "id": 1,
+        "name":"Virgin Caipirinha Tonic",
+        "image_path":"Grafiken/Alkoholfrei/virgin_caipirinha_tonic.png",
+        "rating":2,
+        "beschreibung":"BlaBlaBla",
+        "tags":"",
+        "ingredients":{
+            "limette_saft":1,
+            "tonic_water":5,
+            "rohrucker": "1/2 EL",
+            "zerstampfte_limette":"1 Stk",
+            "garnitur":[
+            "eiswuerfel"
+            ]
+        },
+        "zubereitung":"Limette achteln und zusammen mit dem Zucker im Glas zerstoßen. Das Glas mit Crushed Ice füllen und Tonic Water hinzugeben. Leicht umrühren."
         }
 },
-"cocktails": {},
-"spirituosen": {},
-"settings": {}}
+
+
+"cocktails": {
+    "1":{
+        "id": 1,
+        "name":"Vodka Lemon",
+        "image_path":"Grafiken/Cocktails/vodka_lemon.png",
+        "rating":5,
+        "beschreibung":"Wodka Lemon ist ein beliebter und häufig getrunkener Drink, der sowohl als Shortdrink als auch als Longdrink getrunken wird, und überaus leicht und schnell zubereitet werden kann.",
+        "tags":"",
+        "ingredients":{
+            "wodka":4,
+            "bitter_lemon":16,
+            "garnitur":[
+               "eiswuerfel",
+               "zitronenscheibe"
+            ]
+        },
+        "zubereitung":"Eiswürfel in ein Longdrinkglas geben, Wodka hinzufügen und mit Bitter Lemon auffüllen."
+        },
+    "2":{
+        "id": 2,
+        "name":"Vodka Energy",
+        "image_path":"Grafiken/Cocktails/vodka_energy.png",
+        "rating":5,
+        "beschreibung":"",
+        "tags":"",
+        "ingredients":{
+            "wodka":2,
+            "energy_drink":16,
+            "garnitur":[
+                "eiswuerfel",
+                "zitronenscheibe"
+            ]
+        },
+        "zubereitung":"Eiswürfel in ein Longdrinkglas geben, Wodka hinzufügen und mit Energdrink auffüllen."
+        },
+    "3":{
+        "id": 3,
+        "name":"Gin Tonic",
+        "image_path":"Grafiken/Cocktails/gin_tonic.png",
+        "rating":5,
+        "beschreibung":"Gin Tonic ist ein klassischer Longdrink aus Gin und Tonic Water. Er zählz zu den Highballs, die in der Regel aus lediglich einer Spirituose und einem kohlensäurehaltigen Filler bestehende Mixgetränk bestehen.",
+        "tags":"",
+        "ingredients":{
+            "gin":4,
+            "tonic_water":16,
+            "garnitur":[
+                "eiswuerfel",
+                "zitronenscheibe_n"
+            ]
+        },
+        "zubereitung":"Gin und Zitronenscheiben in ein Longdrinkglas mit Eiswürfeln geben und mit Tonic Water auffüllen."
+        }
+        
+},
+
+
+"spirituosen": {
+    "1":{
+        "id": 1,
+        "name":"Three Sixty",
+        "image_path":"Grafiken/Flaschen/three_sixty.png",
+        "rating":5,
+        "beschreibung":"",
+        "tags":"",
+        "typ":"wodka",
+        "volumen": 700,
+        "vol_prozent": 37.5
+        },
+    "2":{
+        "id": 2,
+        "name":"Jack Daniel´s Old No. 7",
+        "image_path":"Grafiken/Flaschen/jack_daniels.png",
+        "rating":3,
+        "beschreibung":"",
+        "tags":"",
+        "typ":"whisky",
+        "volumen": 700,
+        "vol_prozent": 40
+        },
+    "3":{
+        "id": 3,
+        "name":"Bombay Sapphire",
+        "image_path":"Grafiken/Flaschen/bombay_sapphire.png",
+        "rating":5,
+        "beschreibung":"",
+        "tags":"",
+        "typ":"gin",
+        "volumen": 700,
+        "vol_prozent": 40
+        },
+    "4":{
+        "id": 4,
+        "name":"Gordon´s London Dry Gin",
+        "image_path":"Grafiken/Flaschen/gordon_s.png",
+        "rating":4,
+        "beschreibung":"",
+        "tags":"",
+        "typ":"gin",
+        "volumen": 700,
+        "vol_prozent": 37.5
+        },
+    "5":{
+        "id": 5,
+        "name":"Skyy Vodka",
+        "image_path":"Grafiken/Flaschen/skyy_vodka.png",
+        "rating": 3,
+        "beschreibung":"",
+        "tags":"",
+        "typ":"wodka",
+        "volumen": 700,
+        "vol_prozent": 40
+        },
+    "6":{
+        "id": 6,
+        "name":"Linie Aquavit",
+        "image_path":"Grafiken/Flaschen/linie_aquavit.png",
+        "rating": 3,
+        "beschreibung":"",
+        "tags":"",
+        "typ":"aquavit",
+        "volumen": 700,
+        "vol_prozent": 41.5
+    }
+},
+
+
+"settings": {
+    "fullscreen":false,
+    "kalibration":{
+        "slot_1": 311,
+        "slot_2": 311,
+        "slot_3": 311,
+        "slot_4": 311
+    }
+}}
