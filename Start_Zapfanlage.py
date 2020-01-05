@@ -72,14 +72,14 @@ class RV_Cocktails(RecycleView):
     def __init__(self, **kwargs):
         super(RV_Cocktails, self).__init__(**kwargs)
 
-        cocktails_list = DatabaseManager().get_full_db_record("Cocktails")
-        
+        table = db.table( 'cocktails' )   
+    
         self.data = [{
-            'text': row[1],
-            'image_source': row[2],
-            'rating': "Bewertung: " + str(row[4]) + "/5",
-            'id': str(row[0])
-            } for row in cocktails_list]
+            'text': json_object.get("name"),
+            'image_source': json_object.get("image_path"),
+            'rating': "Bewertung: " + str(json_object.get("rating")) + "/5",
+            'id': str(json_object.get("id"))
+            } for json_object in table]
 
 
 #Alkoholfrei
@@ -107,7 +107,7 @@ class RV_Alkoholfrei(RecycleView):
         super(RV_Alkoholfrei, self).__init__(**kwargs)
         
         table = db.table( 'alkoholfrei' )   
-        
+    
         self.data = [{
             'text': json_object.get("name"),
             'image_source': json_object.get("image_path"),
@@ -127,16 +127,16 @@ class RecycleViewRow_Drinks(BoxLayout):
 class RV_Drinks(RecycleView):
     def __init__(self, **kwargs):
         super(RV_Drinks, self).__init__(**kwargs)
-
-        drinks_list = DatabaseManager().get_full_db_record("Drinks")
         
+        table = db.table( 'spirituosen' )   
+    
         self.data = [{
-            'text': row[1],
-            'drink_type': JSON_Manager.switch_zutaten(self, "alkohol", row[2]) + ", " + str(row[3]).replace(".", ",") + "% vol.",
-            'image_source': row[4],
-            'rating': "Bewertung: " + str(row[6]) + "/5",
-            'id': str(row[0])
-            } for row in drinks_list]
+            'text': json_object.get("name"),
+            'drink_type': JSON_Manager.switch_zutaten(self, "alkohol", json_object.get("typ")) + ", " + str(json_object.get("vol_prozent")).replace(".", ",") + "% vol.",
+            'image_source': json_object.get("image_path"),
+            'rating': "Bewertung: " + str(json_object.get("rating")) + "/5",
+            'id': str(json_object.get("id"))
+            } for json_object in table]
 
 
 ###########################################################################
