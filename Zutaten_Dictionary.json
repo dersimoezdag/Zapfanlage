@@ -1,0 +1,38 @@
+{
+    "alkohol":
+    {
+        "wodka":"Wodka",
+        "tequilla":"Tequilla",
+        "gin":"Gin",
+        "whisky":"Whisky",
+        "aquavit":"Aquavit"
+    },      
+    
+    "softdrinks":
+    {
+        "bitter_lemon":"Bitter Lemon",
+        "tonic_water":"Tonic Water",
+        "ginger_ale":"Ginger Ale",
+        "soda":"Soda",
+        "energy_drink":"Energy Drink",
+        "cola":"Cola",
+        "zitronensaft":"Zitronensaft"
+    },
+
+    "feste_zutaten":
+    {
+        "rohrucker":"Rohrzucker",
+        "zerstampfte_limette":"Zerstampfte Limette"
+    },
+    
+    "garnitur":
+    {
+        "eiswuerfel":"Eiswuerfel",
+        "zitronenscheibe":"Zitronenscheibe",
+        "zitronenscheibe_n":"Zitronenscheiben",
+        "limettenscheibe":"Limettenscheibe",
+        "limettenscheibe_n":"Limettenscheiben",
+        "minze":"Minzblätter",
+        "basilikum":"Basilikumblätter"
+    }
+}

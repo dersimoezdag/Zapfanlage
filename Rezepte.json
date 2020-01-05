@@ -1,0 +1,25 @@
+{
+"_default": {},
+"alkoholfrei": {
+    "1":{
+            "id": 1,
+            "name":"Virgin Caipirinha Tonic",
+            "image_path":"Grafiken/Alkoholfrei/virgin_caipirinha_tonic.png",
+            "rating":2,
+            "beschreibung":"BlaBlaBla",
+            "tags":"",
+            "ingredients":{
+                "limette_saft":1,
+                "tonic_water":5,
+                "rohrucker": "1/2 EL",
+                "zerstampfte_limette":"1 Stk",
+                "garnitur":[
+                "eiswuerfel"
+                ]
+            },
+            "zubereitung":"Limette achteln und zusammen mit dem Zucker im Glas zerstoßen. Das Glas mit Crushed Ice füllen und Tonic Water hinzugeben. Leicht umrühren."
+        }
+},
+"cocktails": {},
+"spirituosen": {},
+"settings": {}}
