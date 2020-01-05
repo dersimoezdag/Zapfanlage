@@ -44,11 +44,11 @@
         "id": 2,
         "name":"Vodka Energy",
         "image_path":"Grafiken/Cocktails/vodka_energy.png",
-        "rating":5,
+        "rating":2,
         "beschreibung":"",
         "tags":"",
         "ingredients":{
-            "wodka":2,
+            "wodka":4,
             "energy_drink":16,
             "garnitur":[
                 "eiswuerfel",
@@ -73,6 +73,40 @@
             ]
         },
         "zubereitung":"Gin und Zitronenscheiben in ein Longdrinkglas mit Eiswürfeln geben und mit Tonic Water auffüllen."
+        },
+    "4":{
+        "id": 4,
+        "name":"Whisky Cola",
+        "image_path":"Grafiken/Cocktails/whisky_cola.png",
+        "rating":2,
+        "beschreibung":"",
+        "tags":"",
+        "ingredients":{
+            "whisky":5,
+            "cola":15,
+            "garnitur":[
+                "eiswuerfel"
+            ]
+        },
+        "zubereitung":"Whisky in ein Whiskyglas geben und mit Cola auffüllen."
+        },
+    "5":{
+        "id": 5,
+        "name":"Aquavit Ginger",
+        "image_path":"Grafiken/Cocktails/aquavit_ginger.png",
+        "rating":4,
+        "beschreibung":"",
+        "tags":"",
+        "ingredients":{
+            "aquavit":5,
+            "tonic_water":8,
+            "zitronensaft":1,
+            "garnitur":[
+            "eiswuerfel",
+            "basilikum"
+            ]
+        },
+        "zubereitung":"Aquavit und Basilikumblätter in ein Longdrinkglas mit Eiswürfeln geben und mit Ginger Ale auffüllen."
         }
         
 },
