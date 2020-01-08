@@ -1,3 +1,5 @@
+# Version 0.8.4
+
 import kivy
 kivy.require('1.11.1')
 
