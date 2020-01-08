@@ -1,5 +1,4 @@
 {
-"_default": {},
 "alkoholfrei": {
     "1":{
         "id": 1,
@@ -178,16 +177,5 @@
         "typ":"aquavit",
         "volumen": 700,
         "vol_prozent": 41.5
-    }
-},
-
-
-"settings": {
-    "fullscreen":false,
-    "kalibration":{
-        "slot_1": 311,
-        "slot_2": 311,
-        "slot_3": 311,
-        "slot_4": 311
     }
 }}
