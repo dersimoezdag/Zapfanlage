@@ -17,12 +17,12 @@
             },
             "rating": 2,
             "tags": "",
-            "zubereitung": "Limette achteln und zusammen mit dem Zucker im Glas zersto\u00c3\u0178en. Das Glas mit Crushed Ice f\u00c3\u00bcllen und Tonic Water hinzugeben. Leicht umr\u00c3\u00bchren."
+            "zubereitung": "Limette achteln und zusammen mit dem Zucker im Glas zerstoßen. Das Glas mit Crushed Ice füllen und Tonic Water hinzugeben. Leicht umrühren."
         }
     },
     "cocktails": {
         "2": {
-            "beschreibung": "Wodka Lemon ist ein beliebter und h\u00c3\u00a4ufig getrunkener Drink, der sowohl als Shortdrink als auch als Longdrink getrunken wird, und \u00c3\u00bcberaus leicht und schnell zubereitet werden kann.",
+            "beschreibung": "Wodka Lemon ist ein beliebter und häufig getrunkener Drink, der sowohl als Shortdrink als auch als Longdrink getrunken wird, und überaus leicht und schnell zubereitet werden kann.",
             "id": 1,
             "image_path": "Grafiken/Cocktails/vodka_lemon.png",
             "ingredients": {
@@ -36,7 +36,7 @@
             "name": "Vodka Lemon",
             "rating": 5,
             "tags": "",
-            "zubereitung": "Eisw\u00c3\u00bcrfel in ein Longdrinkglas geben, Wodka hinzuf\u00c3\u00bcgen und mit Bitter Lemon auff\u00c3\u00bcllen."
+            "zubereitung": "Eiswürfel in ein Longdrinkglas geben, Wodka hinzufügen und mit Bitter Lemon auffüllen."
         },
         "3": {
             "beschreibung": "",
@@ -53,7 +53,7 @@
             "name": "Vodka Energy",
             "rating": 2,
             "tags": "",
-            "zubereitung": "Eisw\u00c3\u00bcrfel in ein Longdrinkglas geben, Wodka hinzuf\u00c3\u00bcgen und mit Energdrink auff\u00c3\u00bcllen."
+            "zubereitung": "Eisw\u00c3\u00bcrfel in ein Longdrinkglas geben, Wodka hinzufügen und mit Energdrink auff\u00c3\u00bcllen."
         },
         "4": {
             "beschreibung": "Gin Tonic ist ein klassischer Longdrink aus Gin und Tonic Water. Er z\u00c3\u00a4hlz zu den Highballs, die in der Regel aus lediglich einer Spirituose und einem kohlens\u00c3\u00a4urehaltigen Filler bestehende Mixgetr\u00c3\u00a4nk bestehen.",
@@ -107,6 +107,7 @@
             "zubereitung": "Aquavit und Basilikumbl\u00c3\u00a4tter in ein Longdrinkglas mit Eisw\u00c3\u00bcrfeln geben und mit Ginger Ale auff\u00c3\u00bcllen."
         }
     },
+
     "spirituosen": {
         "7": {
             "beschreibung": "",
@@ -123,7 +124,7 @@
             "beschreibung": "",
             "id": 2,
             "image_path": "Grafiken/Flaschen/jack_daniels.png",
-            "name": "Jack Daniel\u00c2\u00b4s Old No. 7",
+            "name": "Jack Daniel`s Old No. 7",
             "rating": 3,
             "tags": "",
             "typ": "whisky",
@@ -145,7 +146,7 @@
             "beschreibung": "",
             "id": 4,
             "image_path": "Grafiken/Flaschen/gordon_s.png",
-            "name": "Gordon\u00c2\u00b4s London Dry Gin",
+            "name": "Gordon`s London Dry Gin",
             "rating": 4,
             "tags": "",
             "typ": "gin",

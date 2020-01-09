@@ -2,14 +2,14 @@
     "_default": {
         "1": {
             "name": "fachinhalte",
-            "slot_1": 9,
+            "slot_1": 10,
             "slot_2": 10,
             "slot_3": 11,
             "slot_4": 12
         },
         "2": {
             "name": "kalibratio",
-            "slot_1": 311,
+            "slot_1": 7,
             "slot_2": 311,
             "slot_3": 311,
             "slot_4": 311
@@ -18,6 +18,5 @@
             "fullscreen": false,
             "name": "settings"
         }
-    },
-    "fachinhalte": {}
+    }
 }

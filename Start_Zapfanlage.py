@@ -177,14 +177,13 @@ class Fachinhalt_Setting(BoxLayout):
     def __init__(self, **kwargs):
         super(Fachinhalt_Setting, self).__init__(**kwargs)
 
-        table_spirituosen = db_rezepte.table( 'spirituosen' ) 
-        table_fachinhalte = db_settings.table( 'fachinhalte' ) 
+        table_spirituosen = db_rezepte.table( 'spirituosen' )
         
         if not 'fachlader_nr' in globals():
            global fachlader_nr 
            fachlader_nr = 1
 
-        self.fach_id = "Fach_" + str(fachlader_nr)
+        self.fach_id = str(fachlader_nr)
         print ('Aktuelle Fachinhalte werden geladen von Fach ' + str(fachlader_nr))
         
         gesetzt = False
@@ -199,8 +198,8 @@ class Fachinhalt_Setting(BoxLayout):
 
         self.drinks_list = drinks_new_list
         
-        result = db_settings.get(Query()['name'] == 'fachinhalte')
-        id = result.get("slot_" + str(fachlader_nr))
+        result_fachinhalte = db_settings.get(where('name') == 'fachinhalte')
+        id = result_fachinhalte.get("slot_" + str(fachlader_nr))
         print("Aktuelle ID des Drinks in Fach " + str(fachlader_nr) + ": ")
         print(id)
         
@@ -218,9 +217,24 @@ class Fachinhalt_Setting(BoxLayout):
     def on_spinner_select(self, text, fach_id):
         print (fach_id)
         print (text)
+        
+        result_fachinhalte = db_settings.get(where('name') == 'fachinhalte')
+        
+        id = result_fachinhalte.get("slot_" + fach_id)
+        print("Aktuelle ID des Drinks in Fach " + fach_id + ": ")
+        print(id)
+        
+        splitter_drink = re.split(",  |% vol.,  |ml", text)
+ 
+        table_spirituosen = db_rezepte.table('spirituosen')
+        result_drinks = table_spirituosen.get((where('name') == splitter_drink[0]) & (where('vol_prozent') == float(str(splitter_drink[1]).replace(',', '.'))) & (where('volumen') == int(splitter_drink[2])))
+        
+        if result_drinks is not None:
+            id = result_drinks.doc_id
+            print(result_drinks)
+            print(id)
 
-        table_fachinhalte = db_settings.table( 'fachinhalte' ) 
-        table_fachinhalte.update({'slot_' + fach_id: code})
+        db_settings.update({"slot_" + fach_id : id}, where('name') == 'fachinhalte')
             
             
 class Calibration_Setting(BoxLayout):
