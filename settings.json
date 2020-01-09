@@ -1,10 +1,18 @@
 {
-"settings": {
-    "fullscreen":false,
-    "kalibration":{
+    "_default": {},
+    "fachinhalte": {
+        "slot_1": null,
+        "slot_2": null,
+        "slot_3": null,
+        "slot_4": null
+    },
+    "kalibration": {
         "slot_1": 311,
         "slot_2": 311,
         "slot_3": 311,
         "slot_4": 311
+    },
+    "settings": {
+        "fullscreen": false
     }
-}}
+}

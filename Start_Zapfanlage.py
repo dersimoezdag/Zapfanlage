@@ -6,8 +6,9 @@ kivy.require('1.11.1')
 # Eigene Klassen
 from Database_Manager import DatabaseManager
 from JSON_Manager import JSON_Manager
-from tinydb import TinyDB, Query
-db = TinyDB('Rezepte.json' , sort_keys=True, indent=4, separators=(',', ': '))
+from tinydb import TinyDB, Query, where
+db_rezepte = TinyDB('Rezepte.json' , sort_keys=True, indent=4, separators=(',', ': '))
+db_settings = TinyDB('Settings.json' , sort_keys=True, indent=4, separators=(',', ': '))
 
 # Sonstige Klassen
 import json
@@ -74,7 +75,7 @@ class RV_Cocktails(RecycleView):
     def __init__(self, **kwargs):
         super(RV_Cocktails, self).__init__(**kwargs)
 
-        table = db.table( 'cocktails' )   
+        table = db_rezepte.table( 'cocktails' )   
     
         self.data = [{
             'text': json_object.get("name"),
@@ -108,7 +109,7 @@ class RV_Alkoholfrei(RecycleView):
     def __init__(self, **kwargs):
         super(RV_Alkoholfrei, self).__init__(**kwargs)
         
-        table = db.table( 'alkoholfrei' )   
+        table = db_rezepte.table( 'alkoholfrei' )   
     
         self.data = [{
             'text': json_object.get("name"),
@@ -130,7 +131,7 @@ class RV_Drinks(RecycleView):
     def __init__(self, **kwargs):
         super(RV_Drinks, self).__init__(**kwargs)
         
-        table = db.table( 'spirituosen' )   
+        table = db_rezepte.table( 'spirituosen' )   
     
         self.data = [{
             'text': json_object.get("name"),
@@ -169,6 +170,7 @@ class Screen4(Screen):
 #----------------------------
 class Fachinhalt_Setting(BoxLayout):
     text = kivy_property.StringProperty()
+    code = kivy_property.StringProperty()
     fach_id = kivy_property.StringProperty()
     current_fachinhalt = kivy_property.StringProperty()
     drinks_list = kivy_property.ListProperty()
@@ -176,48 +178,49 @@ class Fachinhalt_Setting(BoxLayout):
     def __init__(self, **kwargs):
         super(Fachinhalt_Setting, self).__init__(**kwargs)
 
-        drinks_raw_list = DatabaseManager().get_dinks_record()
-        drinks_new_list = []
-
-        if not 'fachlader' in globals():
-            global fachlader 
-            fachlader = 1
-
-        self.fach_id = "Fach_" + str(fachlader)
+        table_spirituosen = db_rezepte.table( 'spirituosen' ) 
+        table_fachinhalte = db_settings.table( 'fachinhalte' ) 
         
-        print ('Aktuelle Fachinhalte werden geladen von Fach ' + str(fachlader))
+        if not 'fachlader_nr' in globals():
+           global fachlader_nr 
+           fachlader_nr = 1
+
+        self.fach_id = "Fach_" + str(fachlader_nr)
+        print ('Aktuelle Fachinhalte werden geladen von Fach ' + str(fachlader_nr))
         
         gesetzt = False
+        drinks_new_list = []
 
-        for row in drinks_raw_list:
-            drinks_new_list.append(row[0] + ",  " +
-            str(row[1]).replace(".", ",") + "% vol.,  " + 
-            str(row[2]) + "ml")
-
-
-            if row[fachlader + 2] == 1 and not gesetzt:
-                self.current_fachinhalt = row[0] + ", " + str(row[1]) + "% vol., " + str(row[2]) + "ml"
-                gesetzt = True
-            elif not gesetzt:
-                self.current_fachinhalt = "< Fach leer >"
-
+        for json_object in table_spirituosen:
+            drinks_new_list.append(table_spirituosen.get("name") + ",  " +
+            str(json_object.get("vol_prozent")).replace(".", ",") + "% vol.,  " + 
+            str(json_object.get("volumen")) + "ml")
+            
         drinks_new_list.append("< Fach leer >")
 
-        fachlader = fachlader + 1
         self.drinks_list = drinks_new_list
 
-    def on_spinner_select(self, text, fach_id):
+        if table_fachinhalte.get("slot_" + fachlader_nr) != null and not gesetzt:
+            id = table_fachinhalte.get("slot_" + fachlader_nr)
+            doc = table_spirituosen.get(doc_id = id.doc_id)
+            self.current_fachinhalt = doc.get("name") + ", " + str(doc.get("vol_prozent")) + "% vol., " + str(doc.get("volumen")) + "ml"
+            gesetzt = True
+        elif not gesetzt:
+            self.current_fachinhalt = "< Fach leer >"
+
+        
+
+        fachlader_nr = fachlader_nr + 1
+
+    def on_spinner_select(self, text, code, fach_id):
         print (fach_id)
         print (text)
+        print (code)
 
-        splitter_fach = fach_id.split("Fach_")
-        splitter_drink = re.split(",  |% vol.,  |ml", text)
-
-        if text == '< Fach leer >':
-            DatabaseManager().del_drinks_fachnumber(splitter_fach[1])
-        else:
-            DatabaseManager().add_drinks_fachnumber(splitter_drink[0], splitter_drink[1].replace(",", "."), splitter_drink[2], splitter_fach[1])
-        
+        table_fachinhalte = db_settings.table( 'fachinhalte' ) 
+        table_fachinhalte.update({'slot_' + fach_id: code})
+            
+            
 class Calibration_Setting(BoxLayout):
     text = kivy_property.StringProperty()
     fach_id = kivy_property.StringProperty()
