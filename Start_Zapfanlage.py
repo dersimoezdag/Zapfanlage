@@ -170,7 +170,6 @@ class Screen4(Screen):
 #----------------------------
 class Fachinhalt_Setting(BoxLayout):
     text = kivy_property.StringProperty()
-    code = kivy_property.StringProperty()
     fach_id = kivy_property.StringProperty()
     current_fachinhalt = kivy_property.StringProperty()
     drinks_list = kivy_property.ListProperty()
@@ -192,17 +191,21 @@ class Fachinhalt_Setting(BoxLayout):
         drinks_new_list = []
 
         for json_object in table_spirituosen:
-            drinks_new_list.append(table_spirituosen.get("name") + ",  " +
-            str(json_object.get("vol_prozent")).replace(".", ",") + "% vol.,  " + 
-            str(json_object.get("volumen")) + "ml")
+            drinks_new_list.append(json_object.get("name") + ",  " +
+                str(json_object.get("vol_prozent")).replace(".", ",") + "% vol.,  " + 
+                str(json_object.get("volumen")) + "ml")
             
         drinks_new_list.append("< Fach leer >")
 
         self.drinks_list = drinks_new_list
-
-        if table_fachinhalte.get("slot_" + fachlader_nr) != null and not gesetzt:
-            id = table_fachinhalte.get("slot_" + fachlader_nr)
-            doc = table_spirituosen.get(doc_id = id.doc_id)
+        
+        result = db_settings.get(Query()['name'] == 'fachinhalte')
+        id = result.get("slot_" + str(fachlader_nr))
+        print("Aktuelle ID des Drinks in Fach " + str(fachlader_nr) + ": ")
+        print(id)
+        
+        if id != "null" and not gesetzt:
+            doc = db_rezepte.table( 'spirituosen' ).get(doc_id = id)
             self.current_fachinhalt = doc.get("name") + ", " + str(doc.get("vol_prozent")) + "% vol., " + str(doc.get("volumen")) + "ml"
             gesetzt = True
         elif not gesetzt:
@@ -212,10 +215,9 @@ class Fachinhalt_Setting(BoxLayout):
 
         fachlader_nr = fachlader_nr + 1
 
-    def on_spinner_select(self, text, code, fach_id):
+    def on_spinner_select(self, text, fach_id):
         print (fach_id)
         print (text)
-        print (code)
 
         table_fachinhalte = db_settings.table( 'fachinhalte' ) 
         table_fachinhalte.update({'slot_' + fach_id: code})

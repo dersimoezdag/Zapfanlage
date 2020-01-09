@@ -1,18 +1,23 @@
 {
-    "_default": {},
-    "fachinhalte": {
-        "slot_1": null,
-        "slot_2": null,
-        "slot_3": null,
-        "slot_4": null
+    "_default": {
+        "1": {
+            "name": "fachinhalte",
+            "slot_1": 9,
+            "slot_2": 10,
+            "slot_3": 11,
+            "slot_4": 12
+        },
+        "2": {
+            "name": "kalibratio",
+            "slot_1": 311,
+            "slot_2": 311,
+            "slot_3": 311,
+            "slot_4": 311
+        },
+        "3": {
+            "fullscreen": false,
+            "name": "settings"
+        }
     },
-    "kalibration": {
-        "slot_1": 311,
-        "slot_2": 311,
-        "slot_3": 311,
-        "slot_4": 311
-    },
-    "settings": {
-        "fullscreen": false
-    }
+    "fachinhalte": {}
 }
