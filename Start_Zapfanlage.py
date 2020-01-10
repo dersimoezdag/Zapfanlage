@@ -57,10 +57,7 @@ class RecycleViewRow_Cocktails(BoxLayout):
     def show_rezept(self, cocktail_name):  
         text_rezept = ""
 
-        rezept_path = DatabaseManager().get_cocktail_rezept(cocktail_name)
-        with open(rezept_path.replace("('", "").replace("',)", "")) as JSON:
-            rezept_geladen = json.load(JSON)
-
+        rezept_geladen = DB_Helper().GET_Rezept_JSON(alkoholfrei_name, 'cocktails')
         text_rezept = JSON_Manager().JSON_to_Rezept_String(rezept_geladen)
 
         popup_rezept = Rezept()
@@ -92,17 +89,15 @@ class RecycleViewRow_Alkoholfrei(BoxLayout):
 
     def show_rezept(self, alkoholfrei_name):  
         text_rezept = ""
-
-        rezept_path = DatabaseManager().get_alkoholfrei_rezept(alkoholfrei_name)
-        with open(rezept_path.replace("('", "").replace("',)", "")) as JSON:
-            rezept_geladen = json.load(JSON)
-
+        
+        rezept_geladen = DB_Helper().GET_Rezept_JSON(alkoholfrei_name, 'alkoholfrei')
         text_rezept = JSON_Manager().JSON_to_Rezept_String(rezept_geladen)
 
         popup_rezept = Rezept()
         popup_rezept.title = alkoholfrei_name
         popup_rezept.rezept = text_rezept
         popup_rezept.open()
+        
 
 class RV_Alkoholfrei(RecycleView):
     def __init__(self, **kwargs):
@@ -350,6 +345,15 @@ class HomeScreen(BoxLayout):
             self.ids.sm.current = "screen4"
         elif to == 4:
             self.ids.sm.current = "screen4"
+            
+class DB_Helper():
+    def GET_Rezept_JSON(self, rezeptname, rezepttyp):
+        table = db_rezepte.table(rezepttyp)
+        result_rezept = str(table.get(where('name') == rezeptname))
+        json_rezept = str(result_rezept).replace("\'", "\"")
+        rezept_geladen = json.loads(json_rezept)
+        
+        return rezept_geladen
             
 
 #################################

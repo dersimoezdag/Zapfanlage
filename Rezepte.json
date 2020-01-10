@@ -7,12 +7,14 @@
             "id": 1,
             "image_path": "Grafiken/Alkoholfrei/virgin_caipirinha_tonic.png",
             "ingredients": {
+                "filler": {
+                    "limette_saft": 1,
+                    "tonic_water": 5
+                },
                 "garnitur": [
                     "eiswuerfel"
                 ],
-                "limette_saft": 1,
                 "rohrucker": "1/2 EL",
-                "tonic_water": 5,
                 "zerstampfte_limette": "1 Stk"
             },
             "rating": 2,
@@ -26,12 +28,17 @@
             "id": 1,
             "image_path": "Grafiken/Cocktails/vodka_lemon.png",
             "ingredients": {
-                "bitter_lemon": 16,
+                "spirituosen": {
+                    "wodka": 4
+                },
+                "filler": {
+                    "bitter_lemon": 16
+                },
                 "garnitur": [
                     "eiswuerfel",
                     "zitronenscheibe"
-                ],
-                "wodka": 4
+                ]
+                
             },
             "name": "Vodka Lemon",
             "rating": 5,
@@ -43,29 +50,37 @@
             "id": 2,
             "image_path": "Grafiken/Cocktails/vodka_energy.png",
             "ingredients": {
-                "energy_drink": 16,
+                "spirituosen": {
+                    "wodka": 4
+                },
+                "filler": {
+                    "energy_drink": 16
+                },                
                 "garnitur": [
                     "eiswuerfel",
                     "zitronenscheibe"
-                ],
-                "wodka": 4
+                ]
             },
             "name": "Vodka Energy",
             "rating": 2,
             "tags": "",
-            "zubereitung": "Eisw\u00c3\u00bcrfel in ein Longdrinkglas geben, Wodka hinzufügen und mit Energdrink auff\u00c3\u00bcllen."
+            "zubereitung": "Eisw\u00c3\u00bcrfel in ein Longdrinkglas geben, Wodka hinzufügen und mit Energdrink auffüllen."
         },
         "4": {
-            "beschreibung": "Gin Tonic ist ein klassischer Longdrink aus Gin und Tonic Water. Er z\u00c3\u00a4hlz zu den Highballs, die in der Regel aus lediglich einer Spirituose und einem kohlens\u00c3\u00a4urehaltigen Filler bestehende Mixgetr\u00c3\u00a4nk bestehen.",
+            "beschreibung": "Gin Tonic ist ein klassischer Longdrink aus Gin und Tonic Water. Er z\u00c3\u00a4hlz zu den Highballs, die in der Regel aus lediglich einer Spirituose und einem kohlensäurehaltigen Filler bestehende Mixgetränk bestehen.",
             "id": 3,
             "image_path": "Grafiken/Cocktails/gin_tonic.png",
             "ingredients": {
+                "spirituosen": {
+                    "gin": 4
+                },
+                "filler": {
+                    "tonic_water": 16                    
+                },
                 "garnitur": [
                     "eiswuerfel",
                     "zitronenscheibe_n"
-                ],
-                "gin": 4,
-                "tonic_water": 16
+                ]                
             },
             "name": "Gin Tonic",
             "rating": 5,
@@ -77,11 +92,15 @@
             "id": 4,
             "image_path": "Grafiken/Cocktails/whisky_cola.png",
             "ingredients": {
-                "cola": 15,
+                "spirituosen": {                    
+                    "whisky": 5
+                },
+                "filler": {
+                    "cola": 15                    
+                },
                 "garnitur": [
                     "eiswuerfel"
-                ],
-                "whisky": 5
+                ]
             },
             "name": "Whisky Cola",
             "rating": 2,
@@ -93,13 +112,17 @@
             "id": 5,
             "image_path": "Grafiken/Cocktails/aquavit_ginger.png",
             "ingredients": {
-                "aquavit": 5,
+                "spirituosen": {
+                    "aquavit": 5                    
+                },
+                "filler": {
+                    "tonic_water": 8,
+                    "zitronensaft": 1                    
+                },
                 "garnitur": [
                     "eiswuerfel",
                     "basilikum"
-                ],
-                "tonic_water": 8,
-                "zitronensaft": 1
+                ]
             },
             "name": "Aquavit Ginger",
             "rating": 4,

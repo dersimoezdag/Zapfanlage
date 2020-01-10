@@ -22,24 +22,31 @@ class JSON_Manager():
             if key == "beschreibung":
                 rezept_string = rezept_string + "\n" + value + "\n\n"
             
-            temp = self.switch_zutaten("alkohol", key)
-            if temp != "invalid":
-                rezept_string = rezept_string + temp + ":  " + str(value) + " cl \n"
+            if key == "ingredients":
+                for (key, value) in value.items():
+                    
+                    if key == "spirituosen":
+                        for (key, value) in value.items():
+                            temp = self.switch_zutaten("alkohol", key)
+                            if temp != "invalid":
+                                rezept_string = rezept_string + temp + ":  " + str(value) + " cl \n"
 
-            temp = self.switch_zutaten("softdrinks", key)
-            if temp != "invalid":
-                rezept_string = rezept_string + temp + ":  " + str(value) + " cl \n"
+                    if key == "filler":
+                        for (key, value) in value.items():
+                            temp = self.switch_zutaten("softdrinks", key)
+                            if temp != "invalid":
+                                rezept_string = rezept_string + temp + ":  " + str(value) + " cl \n"
+                                
+                    temp = self.switch_zutaten("feste_zutaten", key)
+                    if temp != "invalid":
+                        rezept_string = rezept_string + temp + ":  " + str(value) + " \n"
 
-            temp = self.switch_zutaten("feste_zutaten", key)
-            if temp != "invalid":
-                rezept_string = rezept_string + temp + ":  " + str(value) + " \n"
-
-            if key == "garnitur":
-                rezept_string = rezept_string + "Garnitur:  "
-                for i in value:
-                    temp = self.switch_zutaten("garnitur",i)
-                    rezept_string = rezept_string + str(temp) + ", "
-                rezept_string = rezept_string[:-2]
+                    if key == "garnitur":
+                        rezept_string = rezept_string + "Garnitur:  "
+                        for i in value:
+                            temp = self.switch_zutaten("garnitur",i)
+                            rezept_string = rezept_string + str(temp) + ", "
+                        rezept_string = rezept_string[:-2]
 
             if key == "zubereitung":
                 rezept_string = rezept_string + "\n\n" + value
