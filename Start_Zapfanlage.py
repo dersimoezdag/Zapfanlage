@@ -4,16 +4,19 @@ import kivy
 kivy.require('1.11.1')
 
 # Eigene Klassen
-from JSON_Manager import JSON_Manager
-from tinydb import TinyDB, Query, where
-db_rezepte = TinyDB('Rezepte.json' , sort_keys=True, indent=4, separators=(',', ': '))
-db_settings = TinyDB('Settings.json' , sort_keys=True, indent=4, separators=(',', ': '))
+
 
 # Sonstige Klassen
 import json
 import re
 
+from JSON_Manager import JSON_Manager
+from tinydb import TinyDB, Query, where
+db_rezepte = TinyDB('Rezepte.json' , sort_keys=True, indent=4, separators=(',', ': '))
+db_settings = TinyDB('Settings.json' , sort_keys=True, indent=4, separators=(',', ': '))
+
 from kivy.app import App
+from kivy.lang import Builder
 from kivy.config import Config
 from kivy.config import ConfigParser
 from kivy.uix.settings import Settings, SettingItem, SettingsPanel, SettingTitle
@@ -362,6 +365,7 @@ class ZapfanlageApp(App):
     title = 'Zapfanlage'
 
     def build(self):
+        Builder.load_file('main.kv')
         return HomeScreen()
 
 if __name__ == "__main__":

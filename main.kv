@@ -1,0 +1,60 @@
+#:kivy 1.10.1
+#:import Factory kivy.factory.Factory
+
+#:include GUI/screens.kv
+#:include GUI/widgets_settings.kv
+#:include GUI/widgets_drinks.kv
+#:include GUI/settings_drinks.kv
+
+<HomeScreen>:
+
+    sm: sm
+    name: 'ScreenManager'
+
+    BoxLayout:
+        orientation: 'vertical'
+        rows: 2
+        
+        ActionBar:
+            pos_hint: {'top': 1}
+            size_hint_y: .065
+            ActionView:
+                use_separator: True
+                
+                ActionPrevious:
+                    
+                ActionOverflow:
+
+                ActionButton:
+                    text: 'Cocktails'
+                    on_press:
+                        root.switch(1)
+
+                ActionButton:
+                    text: 'Drinks'
+                    on_press:
+                        root.switch(2)
+
+                ActionButton:
+                    text: 'Alkoholfreies'
+                    on_press:
+                        root.switch(3)
+                        
+                ActionButton:
+                    text: 'Einstellungen'
+                    on_press:
+                        root.switch(4)
+            
+
+        ScreenManager:
+            id: sm
+            size_hint_y: .935
+
+            Screen1:
+                
+            Screen2:
+                
+            Screen3:
+
+            Screen4:
+            

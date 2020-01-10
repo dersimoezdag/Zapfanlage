@@ -1,0 +1,100 @@
+#:kivy 1.10.1
+
+
+<RV_Cocktails>:
+    viewclass: 'RecycleViewRow_Cocktails'
+    RecycleBoxLayout:
+        default_size: dp(250), dp(56)
+        default_size_hint: None, 1
+        size_hint_x: None
+        width: self.minimum_width
+        orientation: 'horizontal'
+
+<RecycleViewRow_Cocktails>:
+    orientation: 'vertical'
+    Image:
+        source: root.image_source
+        size_hint: (.9, .85)
+    Label:
+        size_hint: (.9, .05)
+        text: root.rating
+    Button:
+        on_press: 
+            root.show_rezept(root.text)
+        text: root.text
+        size_hint: (.95, .1)
+
+<RV_Alkoholfrei>:
+    viewclass: 'RecycleViewRow_Alkoholfrei'
+    RecycleBoxLayout:
+        default_size: dp(250), dp(56)
+        default_size_hint: None, 1
+        size_hint_x: None
+        width: self.minimum_width
+        orientation: 'horizontal'
+
+<RecycleViewRow_Alkoholfrei>:
+    orientation: 'vertical'
+    Image:
+        source: root.image_source
+        size_hint: (.9, .85)
+    Label:
+        size_hint: (.9, .05)
+        text: root.rating
+    Button:
+        on_press: 
+            root.show_rezept(root.text)
+        text: root.text
+        size_hint: (.95, .1)
+
+<RV_Drinks>:
+    viewclass: 'RecycleViewRow_Drinks'
+    RecycleBoxLayout:
+        default_size: dp(250), dp(56)
+        default_size_hint: None, 1
+        size_hint_x: None
+        width: self.minimum_width
+        orientation: 'horizontal'
+
+<RecycleViewRow_Drinks>:
+    orientation: 'vertical'
+    Image:
+        source: root.image_source
+        size_hint: (.9, .80)
+    Label:
+        size_hint: (.9, .05)
+        text: root.drink_type
+    Label:
+        size_hint: (.9, .05)
+        text: root.rating
+    Button:
+        on_press: 
+            #app.show_description(root.text)
+        text: root.text
+        size_hint: (.95, .1)
+
+
+########## Popups ######################
+
+<Rezept>:
+    auto_dismiss: False
+    title: root.title
+    size_hint: (.60, .80)
+    BoxLayout:
+        orientation: 'vertical'
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            Label:
+                text: root.rezept
+                size_hint_y: None
+                text_size: self.width, None
+                height: self.texture_size[1]
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: (.95, .1)
+            Button:
+                text: 'Zurueck'
+                on_release: root.dismiss()
+            Button:
+                text: 'Einschenken'
