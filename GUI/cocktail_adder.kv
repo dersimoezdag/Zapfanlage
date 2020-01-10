@@ -1,0 +1,89 @@
+#:kivy 1.10.1
+
+<cocktail_adder>:
+    auto_dismiss: False
+    title: 'Cocktail hinzufügen'
+    size_hint: (.60, .80)
+    BoxLayout:
+        orientation: 'vertical'
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            GridLayout:
+                cols: 2
+                size_hint: 1, None
+                height: self.minimum_height
+            
+                Label:
+                    size_hint: .2, None
+                    height: '30dp'
+                    text_size: self.width, None
+                    text: 'Name des Cocktails:'
+                TextInput:
+                    size_hint: 1.8, None
+                    height: '30dp'
+                    multiline: False
+
+                Label:
+                    text_size: self.width, None
+                    text: 'Beschreibung:'
+                TextInput:
+                    size_hint: 1, None
+                    height: max(self.minimum_height, self.height)
+
+                Label:
+                    text_size: self.width, None
+                    text: 'Zubereitung:'
+                TextInput:
+                    size_hint: 1, None
+                    height: max(self.minimum_height, self.height)
+
+                Label:
+                    text_size: self.width, None
+                    text: 'Alkoholische Zutaten'
+                Label:
+                    text_size: self.width, None
+                    size_hint: 1, None
+                    text: ' '     
+
+                    
+                Label:
+                    text_size: self.width, None
+                    text: 'Mischgetränke'
+                Label:
+                    text_size: self.width, None
+                    size_hint: 1, None
+                    text: ' '       
+
+
+                Label:
+                    text_size: self.width, None
+                    text: 'Garnitur'
+                Label:
+                    text_size: self.width, None
+                    size_hint: 1, None
+                    text: ' '       
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: (.95, .1)
+            Button:
+                text: 'Abbrechen'
+                on_release: root.dismiss()
+            Button:
+                text: 'Weiter'
+
+<ZutatenSpinner>
+    Spinner:
+        name: root.Zutatenart
+        text: 'Weitere Zutat hinzufügen'
+        values: root.zutatenart_list
+        on_text: root.on_zutaten_spinner_select(self.text, self.name)
+
+    Spinner:
+        name: root.Zutat
+        text: 'Bitte wählen'
+        values: root.zutaten_list
+        on_text: root.on_zutaten_spinner_select(self.text, self.name)
+
