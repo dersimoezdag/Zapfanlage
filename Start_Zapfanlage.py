@@ -4,7 +4,6 @@ import kivy
 kivy.require('1.11.1')
 
 # Eigene Klassen
-from Database_Manager import DatabaseManager
 from JSON_Manager import JSON_Manager
 from tinydb import TinyDB, Query, where
 db_rezepte = TinyDB('Rezepte.json' , sort_keys=True, indent=4, separators=(',', ': '))
@@ -249,25 +248,27 @@ class Calibration_Setting(BoxLayout):
     def __init__(self, **kwargs):
         super(Calibration_Setting, self).__init__(**kwargs)
 
-        if not 'fachkalibrierung' in globals():
-            global fachkalibrierung 
-            fachkalibrierung = 1
+        if not 'fachkalibrierung_nr' in globals():
+            global fachkalibrierung_nr 
+            fachkalibrierung_nr = 1
 
-        self.fach_id = "Kalibrierung_Fach_" + str(fachkalibrierung)
-        self.fach_id_plus = "Kalibrierung_plus_Fach_" + str(fachkalibrierung)
-        self.fach_id_minus = "Kalibrierung_minus_Fach_" + str(fachkalibrierung)
-        self.fach_id_plusplus = "Kalibrierung_plusplus_Fach_" + str(fachkalibrierung)
-        self.fach_id_minusminus = "Kalibrierung_minusminus_Fach_" + str(fachkalibrierung)
+        self.fach_id = "Kalibrierung_Fach_" + str(fachkalibrierung_nr)
+        self.fach_id_plus = "Kalibrierung_plus_Fach_" + str(fachkalibrierung_nr)
+        self.fach_id_minus = "Kalibrierung_minus_Fach_" + str(fachkalibrierung_nr)
+        self.fach_id_plusplus = "Kalibrierung_plusplus_Fach_" + str(fachkalibrierung_nr)
+        self.fach_id_minusminus = "Kalibrierung_minusminus_Fach_" + str(fachkalibrierung_nr)
 
-        kalibrierungswert = str(DatabaseManager().get_setting("kalibration_" + str(fachkalibrierung)))
+        print ('Aktuelle Kalibrierungen werden geladen von Fach ' + str(fachkalibrierung_nr))
         
+        result_kalibrierung = db_settings.get(where('name') == 'kalibrierung')
+        kalibrierungswert = result_kalibrierung.get("slot_" + str(fachkalibrierung_nr))
+        
+        print("Aktueller Kalibrierungswert der Spirituose in Fach " + str(fachkalibrierung_nr) + ": ")
         print(kalibrierungswert)
 
-        self.kalibrierungswert = kalibrierungswert.replace('[(', '').replace(',)]', '').replace("'", '')
+        self.kalibrierungswert = str(kalibrierungswert)
 
-        print ('Aktuelle Kalibrierungen werden geladen von Fach ' + str(fachkalibrierung))
-
-        fachkalibrierung = fachkalibrierung + 1
+        fachkalibrierung_nr = fachkalibrierung_nr + 1
 
 
     def on_kalibration_select(self, id):    
@@ -296,17 +297,22 @@ class Calibration_Setting(BoxLayout):
 
 
     def on_save_select(self, id):
-        id_bereinigt = str(id).replace('Kalibrierung_Fach_','')
-        wert = self.kalibrierungswert
-        print(id_bereinigt)
-        print(wert)
-        DatabaseManager().set_setting("kalibration_" + str(id_bereinigt),str(wert))
-
-        wert = str(DatabaseManager().get_setting("kalibration_" + str(id_bereinigt)))
-        wert = wert.replace('[(', '').replace(',)]', '').replace("'", '')
-        print(wert)
+        fach_id = str(id).replace('Kalibrierung_Fach_','')
+        kalibrierungswert = self.kalibrierungswert
+        print(fach_id)
+        print(kalibrierungswert)
         
-        self.kalibrierungswert = wert        
+        print ('Aktuelle Kalibrierungen werden aktualisiert von Fach ' + str(fach_id))
+        
+        db_settings.update({"slot_" + fach_id : int(kalibrierungswert)}, where('name') == 'kalibrierung')
+        
+        result_kalibrierung = db_settings.get(where('name') == 'kalibrierung')
+        kalibrierungswert = result_kalibrierung.get("slot_" + str(fach_id))
+        
+        print("Neuer Kalibrierungswert der Spirituose in Fach " + fach_id + ": ")
+        print(kalibrierungswert)
+        
+        self.kalibrierungswert = str(kalibrierungswert)        
 
 
 
