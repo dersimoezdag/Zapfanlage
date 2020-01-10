@@ -57,7 +57,7 @@ class RecycleViewRow_Cocktails(BoxLayout):
     def show_rezept(self, cocktail_name):  
         text_rezept = ""
 
-        rezept_geladen = DB_Helper().GET_Rezept_JSON(alkoholfrei_name, 'cocktails')
+        rezept_geladen = DB_Helper().GET_Rezept_JSON(cocktail_name, 'cocktails')
         text_rezept = JSON_Manager().JSON_to_Rezept_String(rezept_geladen)
 
         popup_rezept = Rezept()
