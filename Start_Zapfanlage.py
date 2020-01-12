@@ -12,8 +12,8 @@ import re
 
 from JSON_Manager import JSON_Manager
 from tinydb import TinyDB, Query, where
-db_rezepte = TinyDB('Rezepte.json' , sort_keys=True, indent=4, separators=(',', ': '))
-db_settings = TinyDB('Settings.json' , sort_keys=True, indent=4, separators=(',', ': '))
+db_rezepte = TinyDB('Datenbanken/Rezepte.json' , sort_keys=True, indent=4, separators=(',', ': '))
+db_settings = TinyDB('Datenbanken/Settings.json' , sort_keys=True, indent=4, separators=(',', ': '))
 
 from kivy.app import App
 from kivy.lang import Builder
