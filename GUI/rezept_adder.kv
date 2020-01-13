@@ -1,6 +1,6 @@
 #:kivy 1.10.1
 
-<cocktail_adder>:
+<rezept_adder>:
     auto_dismiss: False
     title: 'Cocktail hinzufügen'
     size_hint: (.60, .80)
@@ -38,14 +38,7 @@
                     size_hint: 1, None
                     height: max(self.minimum_height, self.height)
 
-                Label:
-                    text_size: self.width, None
-                    text: 'Alkoholische Zutaten'
-                Label:
-                    text_size: self.width, None
-                    size_hint: 1, None
-                    text: ' '     
-
+                Adder:
                     
                 Label:
                     text_size: self.width, None
@@ -74,7 +67,7 @@
             Button:
                 text: 'Weiter'
 
-<ZutatenSpinner>
+<ZutatenSpinner>:
     Spinner:
         name: root.Zutatenart
         text: 'Weitere Zutat hinzufügen'
@@ -86,4 +79,14 @@
         text: 'Bitte wählen'
         values: root.zutaten_list
         on_text: root.on_zutaten_spinner_select(self.text, self.name)
+
+<Spirituosen_adder>:
+    orientation: 'vertical'
+    Label:
+        text_size: self.width, None
+        text: 'Alkoholische Zutaten'
+    Label:
+        text_size: self.width, None
+        size_hint: 1, None
+        text: ' '  
 
