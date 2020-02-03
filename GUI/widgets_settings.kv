@@ -1,0 +1,66 @@
+#:kivy 1.10.1
+
+######### Settings Widgets ################################
+<Fachinhalt_Setting>:
+    BoxLayout:
+        orientation: 'horizontal'
+        Label:
+            text: root.text
+        Spinner:
+            name: root.fach_id
+            text: root.current_fachinhalt
+            values: root.drinks_list
+            on_text: root.on_spinner_select(self.text, self.name)
+
+<Calibration_Setting>:
+    BoxLayout:
+        orientation: 'horizontal'
+        Label:
+            text: root.text
+        BoxLayout:
+            orientation: 'vertical'
+
+            BoxLayout:
+                orientation: 'horizontal'
+                Button:
+                    name: root.fach_id_minusminus
+                    size_hint_x: None
+                    width: self.height * 2
+                    text: '--'
+                    on_press: root.on_kalibration_select(self.name)
+                Button:
+                    name: root.fach_id_minus
+                    size_hint_x: None
+                    width: self.height * 2
+                    text: '-'
+                    on_press: root.on_kalibration_select(self.name)
+                Label:
+                    name: root.fach_id
+                    text: root.kalibrierungswert
+                Button:
+                    name: root.fach_id_plus
+                    size_hint_x: None
+                    width: self.height * 2
+                    text: '+'
+                    on_press: root.on_kalibration_select(self.name)
+                Button:
+                    name: root.fach_id_plusplus
+                    size_hint_x: None
+                    width: self.height * 2
+                    text: '++'
+                    on_press: root.on_kalibration_select(self.name)
+
+            BoxLayout:
+                orientation: 'horizontal'
+
+                Button:
+                    size_hint_: None
+                    text: 'Testen mit 2cl'
+                
+                Button:
+                    name: root.fach_id
+                    size_hint_x: None
+                    text: 'Speichern'
+                    background_color: root.color
+                    on_press: root.on_save_select(self.name)
+                

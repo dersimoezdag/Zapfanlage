@@ -1,0 +1,129 @@
+#:kivy 1.10.1
+
+#----------------------- Screen 1 ------------------------
+<Screen1@Screen>:
+    name: "screen1"
+    RV_Cocktails:
+
+#----------------------- Screen 2 ------------------------
+<Screen2@Screen>:
+    name: "screen2"
+    RV_Drinks:
+
+
+#----------------------- Screen 3 ------------------------
+<Screen3@Screen>:
+    name: "screen3"
+    RV_Alkoholfrei:
+
+
+#----------------------- Screen 4 (Settings) ------------------------
+<Screen4@Screen>:
+    name: "screen4"
+    ScrollView:
+        do_scroll_x: False
+        GridLayout:
+            cols: 1
+            spacing: 10
+            size_hint: (.95, None)
+            height: self.minimum_height
+            
+            Label:
+                size_hint: (.9 ,None)
+                height: '10dp'
+                text: ''
+
+            Label:
+                size_hint: (.9 ,None)
+                height: '20dp'
+                text: 'Systemeinstellungen'
+
+            BoxLayout:
+                size_hint: (.9 ,None)
+                height: '20dp'
+                orientation: 'horizontal'
+                Label:
+                    text: 'Vollbildmodus'
+                Switch:
+                    id: 'fullscreen_switch'
+                    on_active: root.fullscreenchanger(self.active)
+            
+            Label:
+                size_hint: (.9 ,None)
+                height: '5dp'
+                text: ''
+            Label:
+                size_hint: (.9 ,None)
+                height: '20dp'
+                text: 'Fachinhalte'
+            
+            Fachinhalt_Setting:
+                size_hint: (.9 ,None)
+                height: '35dp'
+                text: 'Fach 1'
+            Fachinhalt_Setting:
+                size_hint: (.9 ,None)
+                height: '35dp'
+                text: 'Fach 2'
+            Fachinhalt_Setting:
+                size_hint: (.9 ,None)
+                height: '35dp'
+                text: 'Fach 3'
+            Fachinhalt_Setting:
+                size_hint: (.9 ,None)
+                height: '35dp'
+                text: 'Fach 4'       
+
+            Label:
+                size_hint: (.9 ,None)
+                height: '5dp'
+                text: ''
+            Label:
+                size_hint: (.9 ,None)
+                height: '20dp'
+                text: 'Kalibrierungseinstellungen'
+
+            Calibration_Setting:
+                size_hint: (.9 ,None)
+                height: '70dp'
+                text: 'Kalibrierung Fach 1'
+            Calibration_Setting:
+                size_hint: (.9 ,None)
+                height: '70dp'
+                text: 'Kalibrierung Fach 2'
+            Calibration_Setting:
+                size_hint: (.9 ,None)
+                height: '70dp'
+                text: 'Kalibrierung Fach 3'
+            Calibration_Setting:
+                size_hint: (.9 ,None)
+                height: '70dp'
+                text: 'Kalibrierung Fach 4'
+                              
+            Label:
+                size_hint: (.9 ,None)
+                height: '5dp'
+                text: ''
+
+            BoxLayout:
+                size_hint: (.9 ,None)
+                height: '35dp'
+                orientation: 'horizontal'
+                Label:
+                    text: 'Cocktailrezepte'
+                Button:
+                    text: 'Cocktailrezept hinzufuegen'
+                    on_press: root.rezept_adder_open()
+                Button:
+                    text: 'Cocktailrezept bearbeiten'
+                    on_press: root.rezept_editer_open()
+
+            Label:
+                size_hint: (.9 ,None)
+                height: '5dp'
+                text: ''
+
+            Label:
+                size_hint: (.9 ,None)
+                height: '30dp'
+                text: 'Version: '

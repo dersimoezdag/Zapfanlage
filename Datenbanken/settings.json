@@ -1,0 +1,22 @@
+{
+    "_default": {
+        "1": {
+            "name": "fachinhalte",
+            "slot_1": 10,
+            "slot_2": 12,
+            "slot_3": 11,
+            "slot_4": 8
+        },
+        "2": {
+            "name": "kalibrierung",
+            "slot_1": 345,
+            "slot_2": 352,
+            "slot_3": 306,
+            "slot_4": 280
+        },
+        "3": {
+            "fullscreen": false,
+            "name": "settings"
+        }
+    }
+}
