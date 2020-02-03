@@ -6,66 +6,83 @@
     size_hint: (.60, .80)
     BoxLayout:
         orientation: 'vertical'
-        ScrollView:
-            do_scroll_x: False
-            do_scroll_y: True
-            GridLayout:
-                cols: 2
+        
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'top'
+            size_hint: 1, 1
+
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
                 size_hint: 1, None
-                height: self.minimum_height
-            
-                Label:
-                    size_hint: .2, None
-                    height: '30dp'
-                    text_size: self.width, None
-                    text: 'Name des Cocktails:'
-                TextInput:
-                    size_hint: 1.8, None
-                    height: '30dp'
-                    multiline: False
 
-                Label:
-                    text_size: self.width, None
-                    text: 'Beschreibung:'
-                TextInput:
-                    size_hint: 1, None
-                    height: max(self.minimum_height, self.height)
+                GridLayout:
+                    orientation: 'tb-lr'
+                    size_hint: 1, 1
 
-                Label:
-                    text_size: self.width, None
-                    text: 'Zubereitung:'
-                TextInput:
-                    size_hint: 1, None
-                    height: max(self.minimum_height, self.height)
-
-                Adder:
+                    GridLayout:
+                        cols: 2
+                        size_hint: 1, None
+                        height: self.minimum_height
                     
-                Label:
-                    text_size: self.width, None
-                    text: 'Mischgetränke'
-                Label:
-                    text_size: self.width, None
-                    size_hint: 1, None
-                    text: ' '       
+                        Label:
+                            size_hint: .2, None
+                            height: '30dp'
+                            text_size: self.width, None
+                            text: 'Name des Cocktails:'
+                        TextInput:
+                            size_hint: 1.8, None
+                            height: '30dp'
+                            multiline: False
+
+                        Label:
+                            text_size: self.width, None
+                            text: 'Beschreibung:'
+                        TextInput:
+                            size_hint: 1, None
+                            height: max(self.minimum_height, self.height)
+
+                        Label:
+                            text_size: self.width, None
+                            text: 'Zubereitung:'
+                        TextInput:
+                            size_hint: 1, None
+                            height: max(self.minimum_height, self.height)
+
+                    GridLayout:
+                        cols: 1
+                        size_hint: 1, None
+                        height: self.minimum_height
+                        id: rezept_adder_space
+
+                        Spirituosen_adder:
+                        Spirituosen_adder:
+                        
+                    GridLayout:
+                        cols: 3
+                        size_hint: 1, None
+                        height: '40dp'
+                        Button:
+                            text: 'Spirituose hinzufügen'
+                            on_release: root.new_spirituose()
+                            height: '30dp'
+                        Button:
+                            text: 'Spirituose hinzufügen'
+                            on_release: root.new_spirituose()
+                            height: '30dp'
+                        
 
 
-                Label:
-                    text_size: self.width, None
-                    text: 'Garnitur'
-                Label:
-                    text_size: self.width, None
-                    size_hint: 1, None
-                    text: ' '       
-
-
-        BoxLayout:
-            orientation: 'horizontal'
-            size_hint: (.95, .1)
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'top'
+            size_hint_y: .1
             Button:
                 text: 'Abbrechen'
                 on_release: root.dismiss()
             Button:
-                text: 'Weiter'
+                text: 'Speichern'
 
 <ZutatenSpinner>:
     Spinner:
@@ -81,12 +98,13 @@
         on_text: root.on_zutaten_spinner_select(self.text, self.name)
 
 <Spirituosen_adder>:
-    orientation: 'vertical'
+    cols: 2
+    size_hint: 1, .2
+    height: max(self.minimum_height, self.height)
+
     Label:
         text_size: self.width, None
         text: 'Alkoholische Zutaten'
-    Label:
-        text_size: self.width, None
-        size_hint: 1, None
-        text: ' '  
+    Button:
+        text: 'sdfgsdfgsdfgsdfg'
 

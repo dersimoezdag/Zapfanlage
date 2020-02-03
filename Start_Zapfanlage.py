@@ -154,11 +154,12 @@ class Screen4(Screen):
         else:
             Window.fullscreen = False
 
-    def rezept_adder(self):
+    def rezept_adder_open(self):
+        print("Rezept_Adder wird geöffnet")
         popup_rezept_adder = rezept_adder()
         popup_rezept_adder.open()
 
-    def rezept_editer(self):
+    def rezept_editer_open(self):
         pass
 
 ###############################################################

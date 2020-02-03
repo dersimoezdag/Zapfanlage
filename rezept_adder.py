@@ -30,12 +30,10 @@ db_settings = TinyDB('Datenbanken/Settings.json' , sort_keys=True, indent=4, sep
 
 
 class rezept_adder(Popup):
-    def __init__(self, **kwargs):
-        self.add_widget(Spirituosen_adder)
-
+    def new_spirituose(self):
+        self.ids['rezept_adder_space'].add_widget(Spirituosen_adder())
 
 
 class Spirituosen_adder(BoxLayout):
-    def __init__(self, **kwargs):
-        pass
+    pass
         
