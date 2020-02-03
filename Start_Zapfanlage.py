@@ -213,7 +213,7 @@ class ZapfanlageApp(App):
     title = 'Zapfanlage'
 
     def build(self):
-        Builder.load_file('main.kv')
+        Builder.load_file('main.kv', encoding='utf8')
         return HomeScreen()
 
 if __name__ == "__main__":

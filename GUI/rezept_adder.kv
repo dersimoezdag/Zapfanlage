@@ -1,4 +1,5 @@
-#:kivy 1.10.1
+#:kivy 1.11.1
+# -*- coding: utf-8 -*-
 
 <rezept_adder>:
     auto_dismiss: False
@@ -67,9 +68,27 @@
                             height: max(self.minimum_height, self.height)
 
                     # Ab hier plazieren der Widgets
+                    GridLayout:
+                        cols: 1
+                        size_hint: (1, None)
+                        height: self.minimum_height
+                        spacing: ('0dp', '10dp')
+                        Zutaten_Selector:
 
-                    ZutatenSpinner:
-                    ZutatenSpinner:
+                    GridLayout:
+                        cols: 1
+                        size_hint: (1, None)
+                        height: self.minimum_height
+                        id: rezept_adder_space
+
+                    GridLayout:
+                        cols: 1
+                        size_hint: (1, None)
+                        height: '30dp'
+                        Button:
+                            text: 'Weitere Zutat'
+                            on_release: root.weitere_Zutat()
+              
 
         # Fusßzeile des Rezeptadders
         BoxLayout:
@@ -83,32 +102,35 @@
                 text: 'Speichern'
 
 
-
 # Widgets für den Adder
-<ZutatenSpinner>:
-    cols: 1
+<Zutaten_Selector>:
+    cols: 2
     size_hint: (1, None)
     height: self.minimum_height
     Spinner:
+        size_hint: .4, None
+        height: '30dp'
         name: root.Zutatenart
-        text: 'Weitere Zutat hinzufügen'
+        text: 'Typ'
         values: root.zutatenart_list
         on_text: root.on_zutaten_spinner_select(self.text, self.name)
 
     Spinner:
+        size_hint: .6, None
+        height: '30dp'
         name: root.Zutat
-        text: 'Bitte wählen'
+        text: 'Bitte Typ wählen'
         values: root.zutaten_list
         on_text: root.on_zutaten_spinner_select(self.text, self.name)
 
-<Spirituosen_adder>:
-    cols: 1
-    size_hint: (1, None)
-    height: self.minimum_height
-
     Label:
-        text_size: self.width, None
-        text: 'Alkoholische Zutaten'
-    Button:
-        text: 'sdfgsdfgsdfgsdfg'
+        size_hint: .4, None
+        size: self.texture_size
+        halign: 'left'
+        text: 'Menge (ml/stk): '
+    TextInput:
+        size_hint: .6, None
+        height: '30dp'
+        multiline: False
+
 
