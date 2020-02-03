@@ -6,87 +6,89 @@
     size_hint: (.60, .80)
     BoxLayout:
         orientation: 'vertical'
-        
-        AnchorLayout:
-            anchor_x: 'center'
-            anchor_y: 'top'
-            size_hint: 1, 1
+        size_hint: (1, 1)
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: (1, 1)
 
             ScrollView:
                 do_scroll_x: False
-                do_scroll_y: True
-                size_hint: 1, None
 
+                # Standardinhalt des Rezeptadders
                 GridLayout:
-                    orientation: 'tb-lr'
                     cols: 1
-                    size_hint: 1, None
+                    spacing: ('0dp', '10dp')
+                    padding: ('10dp', '2dp')
+                    size_hint: (1, None)
                     height: self.minimum_height
 
                     GridLayout:
                         cols: 1
-                        size_hint: 1, None
+                        size_hint: (1, None)
                         height: self.minimum_height
-                    
                         Label:
-                            size_hint: .2, None
-                            height: '30dp'
+                            size_hint: 1, None
                             text_size: self.width, None
+                            size: self.texture_size
+                            halign: 'left'
                             text: 'Name des Cocktails:'
                         TextInput:
-                            size_hint: 1.8, None
+                            size_hint: 1, None
                             height: '30dp'
                             multiline: False
 
+                    GridLayout:
+                        cols: 1
+                        size_hint: (1, None)
+                        height: self.minimum_height
                         Label:
+                            size_hint: 1, None
                             text_size: self.width, None
+                            size: self.texture_size
+                            halign: 'left'
                             text: 'Beschreibung:'
                         TextInput:
                             size_hint: 1, None
                             height: max(self.minimum_height, self.height)
 
+                    GridLayout:
+                        cols: 1
+                        size_hint: (1, None)
+                        height: self.minimum_height
                         Label:
+                            size_hint: 1, None
                             text_size: self.width, None
+                            size: self.texture_size
+                            halign: 'left'
                             text: 'Zubereitung:'
                         TextInput:
                             size_hint: 1, None
                             height: max(self.minimum_height, self.height)
 
-                    GridLayout:
-                        cols: 1
-                        size_hint: 1, None
-                        height: self.minimum_height
-                        id: rezept_adder_space
+                    # Ab hier plazieren der Widgets
 
-                        Spirituosen_adder:
-                        Spirituosen_adder:
-                        
-                    GridLayout:
-                        cols: 1
-                        size_hint: 1, None
-                        height: '40dp'
-                        Button:
-                            text: 'Spirituose hinzufügen'
-                            on_release: root.new_spirituose()
-                            height: '30dp'
-                        Button:
-                            text: 'Spirituose hinzufügen'
-                            on_release: root.new_spirituose()
-                            height: '30dp'
-                        
+                    ZutatenSpinner:
+                    ZutatenSpinner:
 
-
-        AnchorLayout:
-            anchor_x: 'center'
-            anchor_y: 'top'
-            size_hint_y: .1
+        # Fusßzeile des Rezeptadders
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: (1, None)
+            height: '30dp'
             Button:
                 text: 'Abbrechen'
                 on_release: root.dismiss()
             Button:
                 text: 'Speichern'
 
+
+
+# Widgets für den Adder
 <ZutatenSpinner>:
+    cols: 1
+    size_hint: (1, None)
+    height: self.minimum_height
     Spinner:
         name: root.Zutatenart
         text: 'Weitere Zutat hinzufügen'
@@ -100,9 +102,9 @@
         on_text: root.on_zutaten_spinner_select(self.text, self.name)
 
 <Spirituosen_adder>:
-    cols: 2
-    size_hint: 1, .2
-    height: max(self.minimum_height, self.height)
+    cols: 1
+    size_hint: (1, None)
+    height: self.minimum_height
 
     Label:
         text_size: self.width, None
