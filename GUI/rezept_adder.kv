@@ -67,19 +67,28 @@
                             size_hint: 1, None
                             height: max(self.minimum_height, self.height)
 
+                    GridLayout:
+                        cols: 1
+                        size_hint: (1, None)
+                        height: self.minimum_height
+                        Button:
+                            size_hint: 1, None
+                            height: '30dp'
+                            text: 'Bild wählen'
+                            on_release: root.on_pathchooser()
+                        TextInput:
+                            size_hint: 1, None
+                            height: '30dp'
+                            hint_text: 'Dateipfad des Bildes    '
+
+
                     # Ab hier plazieren der Widgets
                     GridLayout:
                         cols: 1
                         size_hint: (1, None)
                         height: self.minimum_height
-                        spacing: ('0dp', '10dp')
-                        Zutaten_Selector:
-
-                    GridLayout:
-                        cols: 1
-                        size_hint: (1, None)
-                        height: self.minimum_height
                         id: rezept_adder_space
+                        Zutaten_Selector:
 
                     GridLayout:
                         cols: 1

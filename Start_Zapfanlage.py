@@ -12,8 +12,14 @@ import re
 
 from JSON_Manager import JSON_Manager
 from tinydb import TinyDB, Query, where
-db_rezepte = TinyDB('Datenbanken/Rezepte.json' , sort_keys=True, indent=4, separators=(',', ': '))
-db_settings = TinyDB('Datenbanken/Settings.json' , sort_keys=True, indent=4, separators=(',', ': '))
+db_rezepte = TinyDB('Datenbanken/Rezepte.json',
+                    sort_keys=True,
+                    indent=4,
+                    separators=(',', ': '))
+db_settings = TinyDB('Datenbanken/Settings.json',
+                     sort_keys=True,
+                     indent=4,
+                     separators=(',', ': '))
 
 from kivy.app import App
 from kivy.lang import Builder
@@ -43,21 +49,25 @@ Config.set('kivy', 'window_icon', 'GUI_Elemente/app_icon.png')
 # Declaratons
 sm = ScreenManager()
 
+
+
 ################################# Widgets
 class Rezept(Popup):
     title = kivy_property.StringProperty()
     rezept = kivy_property.StringProperty()
 
 
+
 class RecycleViewRow_Cocktails(BoxLayout):
-    text = kivy_property.StringProperty()  
+    text = kivy_property.StringProperty()
     image_source = kivy_property.StringProperty()
     rating = kivy_property.StringProperty()
 
-    def show_rezept(self, cocktail_name):  
+    def show_rezept(self, cocktail_name):
         text_rezept = ""
 
-        rezept_geladen = DB_Helper().GET_Rezept_JSON(cocktail_name, 'cocktails')
+        rezept_geladen = DB_Helper().GET_Rezept_JSON(cocktail_name,
+                                                     'cocktails')
         text_rezept = JSON_Manager().JSON_to_Rezept_String(rezept_geladen)
 
         popup_rezept = Rezept()
@@ -68,86 +78,116 @@ class RecycleViewRow_Cocktails(BoxLayout):
 
 
 class RV_Cocktails(RecycleView):
+
     def __init__(self, **kwargs):
         super(RV_Cocktails, self).__init__(**kwargs)
 
-        table = db_rezepte.table( 'cocktails' )   
-    
+        table = db_rezepte.table('cocktails')
+
         self.data = [{
-            'text': json_object.get("name"),
-            'image_source': json_object.get("image_path"),
-            'rating': "Bewertung: " + str(json_object.get("rating")) + "/5",
-            'id': str(json_object.get("id"))
-            } for json_object in table]
+            'text':
+            json_object.get("name"),
+            'image_source':
+            json_object.get("image_path"),
+            'rating':
+            "Bewertung: " + str(json_object.get("rating")) + "/5",
+            'id':
+            str(json_object.get("id"))
+        } for json_object in table]
+
 
 
 #Alkoholfrei
 class RecycleViewRow_Alkoholfrei(BoxLayout):
-    text = kivy_property.StringProperty()  
+    text = kivy_property.StringProperty()
     image_source = kivy_property.StringProperty()
     rating = kivy_property.StringProperty()
 
-    def show_rezept(self, alkoholfrei_name):  
+    def show_rezept(self, alkoholfrei_name):
         text_rezept = ""
-        
-        rezept_geladen = DB_Helper().GET_Rezept_JSON(alkoholfrei_name, 'alkoholfrei')
+
+        rezept_geladen = DB_Helper().GET_Rezept_JSON(alkoholfrei_name,
+                                                     'alkoholfrei')
         text_rezept = JSON_Manager().JSON_to_Rezept_String(rezept_geladen)
 
         popup_rezept = Rezept()
         popup_rezept.title = alkoholfrei_name
         popup_rezept.rezept = text_rezept
         popup_rezept.open()
-        
+
+
 
 class RV_Alkoholfrei(RecycleView):
+
     def __init__(self, **kwargs):
         super(RV_Alkoholfrei, self).__init__(**kwargs)
-        
-        table = db_rezepte.table( 'alkoholfrei' )   
-    
+
+        table = db_rezepte.table('alkoholfrei')
+
         self.data = [{
-            'text': json_object.get("name"),
-            'image_source': json_object.get("image_path"),
-            'rating': "Bewertung: " + str(json_object.get("rating")) + "/5",
-            'id': str(json_object.get("id"))
-            } for json_object in table]
+            'text':
+            json_object.get("name"),
+            'image_source':
+            json_object.get("image_path"),
+            'rating':
+            "Bewertung: " + str(json_object.get("rating")) + "/5",
+            'id':
+            str(json_object.get("id"))
+        } for json_object in table]
 
 
 
 class RecycleViewRow_Drinks(BoxLayout):
-    text = kivy_property.StringProperty()  
+    text = kivy_property.StringProperty()
     image_source = kivy_property.StringProperty()
     rating = kivy_property.StringProperty()
     drink_type = kivy_property.StringProperty()
 
 
+
 class RV_Drinks(RecycleView):
+
     def __init__(self, **kwargs):
         super(RV_Drinks, self).__init__(**kwargs)
-        
-        table = db_rezepte.table( 'spirituosen' )   
-    
+
+        table = db_rezepte.table('spirituosen')
+
         self.data = [{
-            'text': json_object.get("name"),
-            'drink_type': JSON_Manager.switch_zutaten(self, "alkohol", json_object.get("typ")) + ", " + str(json_object.get("vol_prozent")).replace(".", ",") + "% vol.",
-            'image_source': json_object.get("image_path"),
-            'rating': "Bewertung: " + str(json_object.get("rating")) + "/5",
-            'id': str(json_object.get("id"))
-            } for json_object in table]
+            'text':
+            json_object.get("name"),
+            'drink_type':
+            JSON_Manager.switch_zutaten(self, "alkohol",
+                                        json_object.get("typ")) + ", " +
+            str(json_object.get("vol_prozent")).replace(".", ",") + "% vol.",
+            'image_source':
+            json_object.get("image_path"),
+            'rating':
+            "Bewertung: " + str(json_object.get("rating")) + "/5",
+            'id':
+            str(json_object.get("id"))
+        } for json_object in table]
+
 
 
 ###########################################################################
 #---------------------------- Screens --------------------------------------
 class Screen1(Screen):
     pass
-        
+
+
+
 class Screen2(Screen):
     pass
+
+
 
 class Screen3(Screen):
     pass
 
+
+
 class Screen4(Screen):
+
     def fullscreenchanger(self, value):
         if Window.fullscreen == False:
             Window.fullscreen = 'auto'
@@ -162,8 +202,11 @@ class Screen4(Screen):
     def rezept_editer_open(self):
         pass
 
+
+
 ###############################################################
-class HomeScreen(BoxLayout): 
+class HomeScreen(BoxLayout):
+
     def switch(self, to):
 
         if self.ids.sm.current == "screen1":
@@ -196,16 +239,20 @@ class HomeScreen(BoxLayout):
             self.ids.sm.current = "screen4"
         elif to == 4:
             self.ids.sm.current = "screen4"
-            
+
+
+
 class DB_Helper():
+
     def GET_Rezept_JSON(self, rezeptname, rezepttyp):
         table = db_rezepte.table(rezepttyp)
         result_rezept = str(table.get(where('name') == rezeptname))
         json_rezept = str(result_rezept).replace("\'", "\"")
         rezept_geladen = json.loads(json_rezept)
-        
+
         return rezept_geladen
-            
+
+
 
 #################################
 class ZapfanlageApp(App):
@@ -215,6 +262,8 @@ class ZapfanlageApp(App):
     def build(self):
         Builder.load_file('main.kv', encoding='utf8')
         return HomeScreen()
+
+
 
 if __name__ == "__main__":
     ZapfanlageApp().run()

@@ -1,13 +1,11 @@
 {
     //Python 3.7.X Nötig
     "python.pythonPath": "C:\\Users\\Dersim\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
-
-    //Code Formatter "Black"
-    "python.formatting.provider": "black",
     "blackPath": "black",
     "editor.formatOnSave": true,
 
     //Coderunner Config
     "code-runner.saveFileBeforeRun": true,
-    "editor.formatOnPaste": true
+    "editor.formatOnPaste": true,
+    "python.formatting.provider": "yapf"
 }
