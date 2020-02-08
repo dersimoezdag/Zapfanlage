@@ -1,4 +1,4 @@
-# Version 0.9.0
+# Version 0.9.2
 import kivy
 kivy.require('1.11.1')
 

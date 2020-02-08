@@ -107,21 +107,21 @@
     cols: 2
     size_hint: (1, None)
     height: self.minimum_height
+    name: root.Zutatennummer
     Spinner:
         size_hint: .4, None
         height: '30dp'
-        name: root.Zutatenart
-        text: 'Typ'
+        text: 'Typ wählen'
+        name: root.Zutatennummer
         values: root.zutatenart_list
-        on_text: root.on_zutaten_spinner_select(self.text, self.name)
+        on_text: root.on_zutatenart_spinner_select(self.text, self.name)
 
     Spinner:
         size_hint: .6, None
         height: '30dp'
-        name: root.Zutat
-        text: 'Bitte Typ wählen'
+        name: root.Zutatennummer
+        text: 'Bitte erst Typ wählen'
         values: root.zutaten_list
-        on_text: root.on_zutaten_spinner_select(self.text, self.name)
 
     Label:
         size_hint: .4, None

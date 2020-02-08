@@ -2,6 +2,8 @@ import kivy
 kivy.require('1.11.1')
 
 
+import json
+from operator import itemgetter 
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.config import Config
@@ -41,12 +43,51 @@ class rezept_adder(Popup):
 
 class Zutaten_Selector(GridLayout):
     Zutatenart = kivy_property.StringProperty()
+    Zutatennummer = kivy_property.StringProperty()
     Zutat = kivy_property.StringProperty()
-    zutaten_list = kivy_property.StringProperty()
-    zutatenart_list = kivy_property.StringProperty()
-
+    zutaten_list = kivy_property.ListProperty(["-"])
+    zutatenart_list = kivy_property.ListProperty(["-"])
     
+    def __init__(self, **kwargs):
+        super(Zutaten_Selector, self).__init__(**kwargs)
 
-Factory.register('Zutaten_Selector', Zutaten_Selector)
-    
+        with open('Zutaten_Dictionary.json') as JSON:
+            json_dict = json.load(JSON)
         
+        if not 'zutaten_nr' in globals():
+           global zutaten_nr 
+           zutaten_nr = 1
+
+        self.Zutatennummer = str(zutaten_nr)
+
+        typen_liste = []
+
+
+        for key in json_dict.keys():
+            key_str = str(key)
+            print(key_str)
+            typen_liste.append(key_str.capitalize())
+            
+        typen_liste.append("Bitte Typ wählen")
+
+        self.zutatenart_list = typen_liste
+        
+        
+    def on_zutatenart_spinner_select(self, text, name):
+        with open('Zutaten_Dictionary.json') as JSON:
+            json_dict = json.load(JSON)
+
+        zutaten_liste = []
+        
+        text = ''.join([x[0].lower() + x[1:] for x in text])
+        print(text)
+        
+        for (key, value) in json_dict.items():
+            if key == text:
+                for (subkey, subvalue) in value.items():
+                    print(subvalue)
+                    zutaten_liste.append(subvalue)
+            
+        zutaten_liste.append("Bitte wählen")
+
+        self.zutaten_list = zutaten_liste

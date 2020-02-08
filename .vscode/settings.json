@@ -8,5 +8,6 @@
     "editor.formatOnSave": true,
 
     //Coderunner Config
-    "code-runner.saveFileBeforeRun": true
+    "code-runner.saveFileBeforeRun": true,
+    "editor.formatOnPaste": true
 }
