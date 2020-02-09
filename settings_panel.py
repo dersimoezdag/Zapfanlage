@@ -24,8 +24,15 @@ from kivy.uix.recycleview.views import RecycleDataViewBehavior
 from kivy.uix.dropdown import DropDown
 
 from tinydb import TinyDB, Query, where
-db_rezepte = TinyDB('Datenbanken/Rezepte.json' , sort_keys=True, indent=4, separators=(',', ': '))
-db_settings = TinyDB('Datenbanken/Settings.json' , sort_keys=True, indent=4, separators=(',', ': '))
+db_rezepte = TinyDB('Datenbanken/Rezepte.json',
+                    sort_keys=True,
+                    indent=4,
+                    separators=(',', ': '))
+db_settings = TinyDB('Datenbanken/Settings.json',
+                     sort_keys=True,
+                     indent=4,
+                     separators=(',', ': '))
+
 
 
 class Fachinhalt_Setting(BoxLayout):
@@ -37,66 +44,74 @@ class Fachinhalt_Setting(BoxLayout):
     def __init__(self, **kwargs):
         super(Fachinhalt_Setting, self).__init__(**kwargs)
 
-        table_spirituosen = db_rezepte.table( 'spirituosen' )
-        
+        table_spirituosen = db_rezepte.table('spirituosen')
+
         if not 'fachlader_nr' in globals():
-           global fachlader_nr 
-           fachlader_nr = 1
+            global fachlader_nr
+            fachlader_nr = 1
 
         self.fach_id = str(fachlader_nr)
-        print ('Aktuelle Fachinhalte werden geladen von Fach ' + str(fachlader_nr))
-        
+        print('Aktuelle Fachinhalte werden geladen von Fach ' +
+              str(fachlader_nr))
+
         gesetzt = False
         drinks_new_list = []
 
         for json_object in table_spirituosen:
-            drinks_new_list.append(json_object.get("name") + ",  " +
-                str(json_object.get("vol_prozent")).replace(".", ",") + "% vol.,  " + 
-                str(json_object.get("volumen")) + "ml")
-            
+            drinks_new_list.append(
+                json_object.get("name") + ",  " +
+                str(json_object.get("vol_prozent")).replace(".", ",") +
+                "% vol.,  " + str(json_object.get("volumen")) + "ml")
+
         drinks_new_list.append("< Fach leer >")
 
         self.drinks_list = drinks_new_list
-        
+
         result_fachinhalte = db_settings.get(where('name') == 'fachinhalte')
         id = result_fachinhalte.get("slot_" + str(fachlader_nr))
         print("Aktuelle ID des Drinks in Fach " + str(fachlader_nr) + ": ")
         print(id)
-        
+
         if id != "null" and not gesetzt:
-            doc = db_rezepte.table( 'spirituosen' ).get(doc_id = id)
-            self.current_fachinhalt = doc.get("name") + ", " + str(doc.get("vol_prozent")) + "% vol., " + str(doc.get("volumen")) + "ml"
+            doc = db_rezepte.table('spirituosen').get(doc_id=id)
+            self.current_fachinhalt = doc.get("name") + ", " + str(
+                doc.get("vol_prozent")) + "% vol., " + str(
+                    doc.get("volumen")) + "ml"
             gesetzt = True
         elif not gesetzt:
             self.current_fachinhalt = "< Fach leer >"
 
-        
-
         fachlader_nr = fachlader_nr + 1
 
     def on_spinner_select(self, text, fach_id):
-        print (fach_id)
-        print (text)
-        
+        print(fach_id)
+        print(text)
+
         result_fachinhalte = db_settings.get(where('name') == 'fachinhalte')
-        
+
         id = result_fachinhalte.get("slot_" + fach_id)
         print("Aktuelle ID des Drinks in Fach " + fach_id + ": ")
         print(id)
-        
-        splitter_drink = re.split(",  |% vol.,  |ml", text)
- 
+
+        splitter_drink = result_drinks.split(",  |% vol.,  |ml", text)
+
         table_spirituosen = db_rezepte.table('spirituosen')
-        result_drinks = table_spirituosen.get((where('name') == splitter_drink[0]) & (where('vol_prozent') == float(str(splitter_drink[1]).replace(',', '.'))) & (where('volumen') == int(splitter_drink[2])))
-        
+        result_drinks = table_spirituosen.get(
+            (where('name') == splitter_drink[0])
+            & (where('vol_prozent') == float(
+                str(splitter_drink[1]).replace(',', '.')))
+            & (where('volumen') == int(splitter_drink[2])))
+
         if result_drinks is not None:
             id = result_drinks.doc_id
             print(result_drinks)
             print(id)
 
-        db_settings.update({"slot_" + fach_id : id}, where('name') == 'fachinhalte')
-            
-            
+        db_settings.update({"slot_" + fach_id: id},
+                           where('name') == 'fachinhalte')
+
+
+
 class Calibration_Setting(BoxLayout):
     text = kivy_property.StringProperty()
     fach_id = kivy_property.StringProperty()
@@ -111,31 +126,39 @@ class Calibration_Setting(BoxLayout):
         super(Calibration_Setting, self).__init__(**kwargs)
 
         if not 'fachkalibrierung_nr' in globals():
-            global fachkalibrierung_nr 
+            global fachkalibrierung_nr
             fachkalibrierung_nr = 1
 
         self.fach_id = "Kalibrierung_Fach_" + str(fachkalibrierung_nr)
-        self.fach_id_plus = "Kalibrierung_plus_Fach_" + str(fachkalibrierung_nr)
-        self.fach_id_minus = "Kalibrierung_minus_Fach_" + str(fachkalibrierung_nr)
-        self.fach_id_plusplus = "Kalibrierung_plusplus_Fach_" + str(fachkalibrierung_nr)
-        self.fach_id_minusminus = "Kalibrierung_minusminus_Fach_" + str(fachkalibrierung_nr)
+        self.fach_id_plus = "Kalibrierung_plus_Fach_" + str(
+            fachkalibrierung_nr)
+        self.fach_id_minus = "Kalibrierung_minus_Fach_" + str(
+            fachkalibrierung_nr)
+        self.fach_id_plusplus = "Kalibrierung_plusplus_Fach_" + str(
+            fachkalibrierung_nr)
+        self.fach_id_minusminus = "Kalibrierung_minusminus_Fach_" + str(
+            fachkalibrierung_nr)
 
-        print ('Aktuelle Kalibrierungen werden geladen von Fach ' + str(fachkalibrierung_nr))
-        
+        print('Aktuelle Kalibrierungen werden geladen von Fach ' +
+              str(fachkalibrierung_nr))
+
         result_kalibrierung = db_settings.get(where('name') == 'kalibrierung')
-        kalibrierungswert = result_kalibrierung.get("slot_" + str(fachkalibrierung_nr))
-        
-        print("Aktueller Kalibrierungswert der Spirituose in Fach " + str(fachkalibrierung_nr) + ": ")
+        kalibrierungswert = result_kalibrierung.get("slot_" +
+                                                    str(fachkalibrierung_nr))
+
+        print("Aktueller Kalibrierungswert der Spirituose in Fach " +
+              str(fachkalibrierung_nr) + ": ")
         print(kalibrierungswert)
 
         self.kalibrierungswert = str(kalibrierungswert)
 
         fachkalibrierung_nr = fachkalibrierung_nr + 1
 
-
-    def on_kalibration_select(self, id):    
-        id_bereinigt = str(id).replace('Kalibrierung_','').replace('_Fach_','')
-        fach_nr = id_bereinigt.replace('plus','').replace('minus','').replace('minusminus','').replace('plusplus','')
+    def on_kalibration_select(self, id):
+        id_bereinigt = str(id).replace('Kalibrierung_',
+                                       '').replace('_Fach_', '')
+        fach_nr = id_bereinigt.replace('plus', '').replace(
+            'minus', '').replace('minusminus', '').replace('plusplus', '')
         plus_or_minus = id_bereinigt.replace(fach_nr, '')
 
         print(fach_nr)
@@ -154,28 +177,28 @@ class Calibration_Setting(BoxLayout):
             wert = wert - 10
 
         print(wert)
-        
-        
+
         self.color = [1, 0, 0, 1]
         self.kalibrierungswert = str(wert)
 
-
     def on_save_select(self, id):
-        fach_id = str(id).replace('Kalibrierung_Fach_','')
+        fach_id = str(id).replace('Kalibrierung_Fach_', '')
         kalibrierungswert = self.kalibrierungswert
         print(fach_id)
         print(kalibrierungswert)
-        
-        print ('Aktuelle Kalibrierungen werden aktualisiert von Fach ' + str(fach_id))
-        
-        db_settings.update({"slot_" + fach_id : int(kalibrierungswert)}, where('name') == 'kalibrierung')
-        
+
+        print('Aktuelle Kalibrierungen werden aktualisiert von Fach ' +
+              str(fach_id))
+
+        db_settings.update({"slot_" + fach_id: int(kalibrierungswert)},
+                           where('name') == 'kalibrierung')
+
         result_kalibrierung = db_settings.get(where('name') == 'kalibrierung')
         kalibrierungswert = result_kalibrierung.get("slot_" + str(fach_id))
-        
-        print("Neuer Kalibrierungswert der Spirituose in Fach " + fach_id + ": ")
+
+        print("Neuer Kalibrierungswert der Spirituose in Fach " + fach_id +
+              ": ")
         print(kalibrierungswert)
-        
-        
+
         self.color = [1, 1, 1, 1]
-        self.kalibrierungswert = str(kalibrierungswert)        
+        self.kalibrierungswert = str(kalibrierungswert)

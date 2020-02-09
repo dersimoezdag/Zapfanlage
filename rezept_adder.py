@@ -72,7 +72,7 @@ class Zutaten_Selector(GridLayout):
         for key in json_dict.keys():
             key_str = str(key)
             print(key_str)
-            typen_liste.append(key_str.capitalize())
+            typen_liste.append(key_str.replace('_', ' ').capitalize())
 
         typen_liste.append("Bitte Typ wählen")
 
@@ -85,6 +85,7 @@ class Zutaten_Selector(GridLayout):
         zutaten_liste = []
 
         text = ''.join([x[0].lower() + x[1:] for x in text])
+        text = text.replace(' ', '_')
         print(text)
 
         for (key, value) in json_dict.items():
