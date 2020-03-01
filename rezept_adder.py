@@ -1,5 +1,6 @@
 from operator import itemgetter
-from tinydb import TinyDB, Query, where
+import json
+import kivy
 from kivy.factory import Factory
 from kivy.uix.dropdown import DropDown
 from kivy.uix.recycleview.views import RecycleDataViewBehavior
@@ -23,10 +24,14 @@ from kivy.config import ConfigParser
 from kivy.config import Config
 from kivy.lang import Builder
 from kivy.app import App
-import json
-import kivy
 kivy.require('1.11.1')
 
+#Localisation
+import gettext
+t = gettext.translation('messages', 'locale')
+_ = t.gettext
+
+from tinydb import TinyDB, Query, where
 db_rezepte = TinyDB('Datenbanken/Rezepte.json',
                     sort_keys=True,
                     indent=4,
@@ -74,7 +79,7 @@ class Zutaten_Selector(GridLayout):
             print(key_str)
             typen_liste.append(key_str.replace('_', ' ').capitalize())
 
-        typen_liste.append("Bitte Typ wählen")
+        typen_liste.append(_("Bitte Typ wählen"))
 
         self.zutatenart_list = typen_liste
 
@@ -94,6 +99,6 @@ class Zutaten_Selector(GridLayout):
                     print(subvalue)
                     zutaten_liste.append(subvalue)
 
-        zutaten_liste.append("Bitte wählen")
+        zutaten_liste.append(_("Bitte wählen"))
 
         self.zutaten_list = zutaten_liste

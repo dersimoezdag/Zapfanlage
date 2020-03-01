@@ -23,6 +23,12 @@ from kivy.uix.recycleview.layout import LayoutSelectionBehavior
 from kivy.uix.recycleview.views import RecycleDataViewBehavior
 from kivy.uix.dropdown import DropDown
 
+# Localisation
+import gettext
+t = gettext.translation('messages', 'locale')
+_ = t.gettext
+
+# Database
 from tinydb import TinyDB, Query, where
 db_rezepte = TinyDB('Datenbanken/Rezepte.json',
                     sort_keys=True,
@@ -63,7 +69,7 @@ class Fachinhalt_Setting(BoxLayout):
                 str(json_object.get("vol_prozent")).replace(".", ",") +
                 "% vol.,  " + str(json_object.get("volumen")) + "ml")
 
-        drinks_new_list.append("< Fach leer >")
+        drinks_new_list.append(_("< Fach leer >"))
 
         self.drinks_list = drinks_new_list
 
@@ -79,7 +85,7 @@ class Fachinhalt_Setting(BoxLayout):
                     doc.get("volumen")) + "ml"
             gesetzt = True
         elif not gesetzt:
-            self.current_fachinhalt = "< Fach leer >"
+            self.current_fachinhalt = _("< Fach leer >")
 
         fachlader_nr = fachlader_nr + 1
 

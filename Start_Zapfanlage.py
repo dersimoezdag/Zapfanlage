@@ -8,7 +8,10 @@ from settings_panel import Fachinhalt_Setting, Calibration_Setting
 
 # Sonstige Klassen
 import json
-import re
+import gettext
+from gettext import translation
+de = translation('messages', localedir='locale', languages=['de_DE'])
+en = translation('messages', localedir='locale', languages=['en_GB'])
 
 from JSON_Manager import JSON_Manager
 from tinydb import TinyDB, Query, where
@@ -90,7 +93,7 @@ class RV_Cocktails(RecycleView):
             'image_source':
             json_object.get("image_path"),
             'rating':
-            "Bewertung: " + str(json_object.get("rating")) + "/5",
+            _("Bewertung: ") + str(json_object.get("rating")) + "/5",
             'id':
             str(json_object.get("id"))
         } for json_object in table]
@@ -130,7 +133,7 @@ class RV_Alkoholfrei(RecycleView):
             'image_source':
             json_object.get("image_path"),
             'rating':
-            "Bewertung: " + str(json_object.get("rating")) + "/5",
+            _("Bewertung: ") + str(json_object.get("rating")) + "/5",
             'id':
             str(json_object.get("id"))
         } for json_object in table]
@@ -162,7 +165,7 @@ class RV_Drinks(RecycleView):
             'image_source':
             json_object.get("image_path"),
             'rating':
-            "Bewertung: " + str(json_object.get("rating")) + "/5",
+            _("Bewertung: ") + str(json_object.get("rating")) + "/5",
             'id':
             str(json_object.get("id"))
         } for json_object in table]
@@ -254,7 +257,18 @@ class DB_Helper():
 
 
 
-#################################
+# ------- Language --------------
+def lang():
+    lang = 'en'
+
+    if lang == 'de':
+        de.install()
+    elif lang == 'en':
+        en.install()
+
+
+
+# ------- Start App -------------
 class ZapfanlageApp(App):
     icon = 'GUI_Elemente/app_icon.png'
     title = 'Zapfanlage'
@@ -266,4 +280,5 @@ class ZapfanlageApp(App):
 
 
 if __name__ == "__main__":
+    lang()
     ZapfanlageApp().run()

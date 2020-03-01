@@ -11,6 +11,10 @@ Ein Projekt für den Raspberry Pi. Ziel ist die Steuerung einer Zapfanlage für 
 
 ## Requirements
 
-pip install -r requirements.txt
+Für x64:
+py -3.7-64 -m pip install -r requirements.txt
+
+Für x32:
+py -3.7-32 -m pip install -r requirements.txt
 
 ## Ziele
